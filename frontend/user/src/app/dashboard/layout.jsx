@@ -28,20 +28,20 @@ export default function DashboardLayout({ children }) {
             </Link>
             <Link
               className="text-gray-500 dark:text-gray-400 whitespace-nowrap"
-              href="#"
+              href="/find-jobs"
             >
               Find Jobs
             </Link>
-            <Link className="text-gray-500 dark:text-gray-400" href="#">
+            <Link className="text-gray-500 dark:text-gray-400" href="/dashboard/projects">
               Projects
             </Link>
-            <Link className="text-gray-500 dark:text-gray-400" href="#">
+            <Link className="text-gray-500 dark:text-gray-400" href="/dashboard/proposals">
               Proposals
             </Link>
-            <Link className="text-gray-500 dark:text-gray-400" href="#">
+            <Link className="text-gray-500 dark:text-gray-400" href="/dashboard/messages">
               Messages
             </Link>
-            <Link className="text-gray-500 dark:text-gray-400" href="#">
+            <Link className="text-gray-500 dark:text-gray-400" href="/dashboard/settings">
               Settings
             </Link>
           </nav>
