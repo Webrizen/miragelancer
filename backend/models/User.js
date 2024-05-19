@@ -6,11 +6,6 @@ const SALT_ROUNDS = 10;
 
 const userSchema = new mongoose.Schema(
   {
-    googleId: {
-      type: String,
-      unique: true,
-      sparse: true,
-    },
     email: {
       type: String,
       unique: true,
@@ -66,7 +61,7 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["client", "freelancer", "admin"],
-      default: "client",
+      default: "freelancer",
     },
     location: {
       state: {
