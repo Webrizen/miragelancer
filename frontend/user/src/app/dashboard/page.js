@@ -8,6 +8,48 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+
+const jobs = [
+  {
+    title: "Senior Frontend Developer",
+    description:
+      "We are looking for an experienced frontend developer to join our growing team.",
+    posted: "Posted 2 days ago",
+    salary: "$80,000",
+    applicants: "12 applicants",
+    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+  },
+  {
+    title: "Backend Developer",
+    description:
+      "Join our team as a backend developer to work on scalable web applications.",
+    posted: "Posted 5 days ago",
+    salary: "$90,000",
+    applicants: "8 applicants",
+    skills: ["Node.js", "Express", "MongoDB", "Docker"],
+  },
+  {
+    title: "Full Stack Developer",
+    description:
+      "We need a versatile full stack developer to handle both frontend and backend tasks.",
+    posted: "Posted 1 week ago",
+    salary: "$100,000",
+    applicants: "20 applicants",
+    skills: ["JavaScript", "Python", "Django", "React"],
+  },
+  {
+    title: "DevOps Engineer",
+    description:
+      "Looking for a DevOps engineer to improve our CI/CD processes.",
+    posted: "Posted 3 days ago",
+    salary: "$110,000",
+    applicants: "5 applicants",
+    skills: ["AWS", "Kubernetes", "Terraform", "CI/CD"],
+  },
+];
 
 export default function page() {
   return (
@@ -114,8 +156,42 @@ export default function page() {
           </CardContent>
         </Card>
       </div>
-      <div>
-        ...
+      <Separator className="my-4" />
+      <div className="max-w-2xl text-left mb-4 mx-2">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white capitalize">
+          Recent Job Invitations
+        </h1>
+        <p className="text-gray-700 dark:text-gray-300 max-w-xl mx-auto md:mx-0">
+          look, some clients are looking for your services 👀, Go help them!
+        </p>
+      </div>
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-4 items-center">
+        {jobs.map((job, index) => (
+          <Link href="/jobs" asChild key={index}>
+            <Card className="w-full">
+              <CardHeader>
+                <CardTitle>{job.title}</CardTitle>
+                <CardDescription>{job.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-start flex-wrap gap-2 whitespace-nowrap items-center text-sm text-gray-500 dark:text-gray-400">
+                  <span>{job.posted}</span>
+                  <span>•</span>
+                  <span className="underline">{job.salary}</span>
+                  <span>•</span>
+                  <span>{job.applicants}</span>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  {job.skills.map((skill, idx) => (
+                    <Badge key={idx}>{skill}</Badge>
+                  ))}
+                </div>
+              </CardFooter>
+            </Card>
+          </Link>
+        ))}
       </div>
     </>
   );
