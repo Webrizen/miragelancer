@@ -19,7 +19,7 @@ export default function CommonBreadcrumbs() {
   };
 
   return (
-    <Breadcrumb>
+    <Breadcrumb className="md:block hidden">
     <BreadcrumbList>
       {pathNames.map((path, index) => (
         <React.Fragment key={index}>
