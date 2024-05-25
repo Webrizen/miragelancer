@@ -22,6 +22,7 @@ export default function RootLayout({ children }) {
       <body className={poppins.className}>
         <AuthProvider>
           <NextTopLoader color="#ffe4e1" />
+          <Navbar />
           {children}
           <Toaster />
         </AuthProvider>
