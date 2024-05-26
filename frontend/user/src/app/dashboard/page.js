@@ -158,10 +158,10 @@ export default function page() {
       </div>
       <Separator className="my-4" />
       <div className="max-w-2xl text-left mb-4 mx-2">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white capitalize">
+        <h1 className="text-xl font-bold text-gray-900 dark:text-white capitalize">
           Recent Job Invitations
         </h1>
-        <p className="text-gray-700 dark:text-gray-300 max-w-xl mx-auto md:mx-0">
+        <p className="text-gray-700 text-sm dark:text-gray-300 max-w-xl mx-auto md:mx-0">
           look, some clients are looking for your services 👀, Go help them!
         </p>
       </div>
@@ -170,7 +170,7 @@ export default function page() {
           <Link href="/jobs" asChild key={index}>
             <Card className="w-full">
               <CardHeader>
-                <CardTitle>{job.title}</CardTitle>
+                <CardTitle className="text-xl">{job.title}</CardTitle>
                 <CardDescription>{job.description}</CardDescription>
               </CardHeader>
               <CardContent>

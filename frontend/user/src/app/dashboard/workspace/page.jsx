@@ -62,7 +62,7 @@ export default function page() {
                 </p>
                 <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex flex-row justify-between items-center w-full">
                   <span>10:30 AM</span>
-                  <DoubleTick className="h-5 w-5" />
+                  <DoubleTick className="h-5 w-5 text-blue-500" />
                 </div>
               </div>
               <Avatar className="border w-8 h-8">
