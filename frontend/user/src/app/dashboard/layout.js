@@ -50,7 +50,7 @@ import CommonBreadcrumbs from "@/components/system/CommonBreadcrumbs";
 export default function DashboardLayout({ children }) {
   const navItems = [
     {
-      href: "#",
+      href: "/dashboard",
       icon: <Home className="h-5 w-5" />,
       label: "Dashboard",
       tooltip: "Dashboard",
