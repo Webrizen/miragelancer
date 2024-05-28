@@ -7,31 +7,31 @@ import { Label } from "@/components/ui/label";
 import { FcGoogle } from "react-icons/fc";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 export function UserLoginForm({ className, ...props }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
+  const { login } = useAuth();
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
 
     try {
-      const username = event.target.username.value;
+      const email = event.target.email.value;
       const password = event.target.password.value;
 
       // Send login request to your backend
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASEURL}/auth/login`,
         {
-          username,
+          email,
           password,
         }
       );
-
-      // Handle successful login
-      console.log("Login successful:", response.data);
-      toast.success(`Login successful - ${response?.data?.message}`, {
+      login(response.data.token);
+      toast.success(`Login successful - we're redirecting you to dashboard.`, {
         duration: 4000,
         position: "bottom-center",
       });
@@ -54,15 +54,15 @@ export function UserLoginForm({ className, ...props }) {
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="username">
-              username
+            <Label className="sr-only" htmlFor="email">
+            email
             </Label>
             <Input
-              id="username"
-              placeholder="@username"
-              type="username"
+              id="email"
+              placeholder="example@domain.com"
+              type="email"
               autoCapitalize="none"
-              autoComplete="username"
+              autoComplete="email"
               autoCorrect="off"
               disabled={isLoading}
             />

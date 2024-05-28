@@ -7,65 +7,49 @@ import { Label } from "@/components/ui/label";
 import { FcGoogle } from "react-icons/fc";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 export function UserAuthForm({ className, ...props }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedRole, setSelectedRole] = useState("creator");
-  const router = useRouter();
+  const [selectedRole, setSelectedRole] = useState("freelancer");
 
-  const handleRoleChange = (role) => {
-    setSelectedRole(role);
-  };
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
 
     try {
-      const username = event.target.username.value;
+      const fullName = event.target.fullName.value;
       const email = event.target.email.value;
       const password = event.target.password.value;
-      const firstName = event.target.firstName.value;
-      const lastName = event.target.lastName.value;
 
-      if (!username || !email || !password || !firstName || !lastName) {
-        toast({
-          variant: "destructive",
-          title: "Please Fill Out All Fields",
-          description: `At ${new Date()}, our system detected a new signup try from your IP which was unsuccessful.`,
+      if (!fullName || !email || !password) {
+        toast.error("Please Fill Out All Fields", {
+          duration: 4000,
+          position: "bottom-center",
+        });
+        setIsLoading(false);
+      } else {
+        // Send signup request to your backend
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_BASEURL}/auth/register`,
+          {
+            fullName,
+            email,
+            role: selectedRole,
+            password,
+          }
+        );
+        toast.success(`Signup successful - ${response?.data?.message}`, {
+          duration: 4000,
+          position: "bottom-center",
         });
         setIsLoading(false);
       }
-
-      // Send signup request to your backend
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASEURL}/auth/register`,
-        {
-          firstName,
-          lastName,
-          username,
-          email,
-          role: selectedRole,
-          password,
-        }
-      );
-
-      // Handle successful signup
-      console.log("Signup successful:", response.data);
-      toast.success(`Signup successful - ${response?.data?.message}`, {
-        duration: 4000,
-        position: 'bottom-center',
-      });
-      setIsLoading(false);
-      setTimeout(() => {
-        router.push('/dashboard');
-      }, 3000);
     } catch (error) {
       // Handle signup errors
       console.error("Signup error:", error);
-      toast.error(`Signup unsuccessful - ${error.response.data.message}`, {
+      toast.error(`Signup unsuccessful - ${error.message}`, {
         duration: 4000,
-        position: 'bottom-center',
+        position: "bottom-center",
       });
       // Reset loading state after a brief delay (for demo purposes)
       setTimeout(() => {
@@ -80,36 +64,12 @@ export function UserAuthForm({ className, ...props }) {
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="firstName">
-              First Name
+            <Label className="sr-only" htmlFor="fullName">
+              Full Name
             </Label>
             <Input
-              id="firstName"
-              placeholder="First Name"
-              type="text"
-              autoCapitalize="none"
-              autoComplete="text"
-              autoCorrect="off"
-              disabled={isLoading}
-            />
-            <Label className="sr-only" htmlFor="lastName">
-              Last Name
-            </Label>
-            <Input
-              id="lastName"
-              placeholder="Last Name"
-              type="text"
-              autoCapitalize="none"
-              autoComplete="text"
-              autoCorrect="off"
-              disabled={isLoading}
-            />
-            <Label className="sr-only" htmlFor="username">
-              UserName
-            </Label>
-            <Input
-              id="username"
-              placeholder="@username"
+              id="fullName"
+              placeholder="John Deo"
               type="text"
               autoCapitalize="none"
               autoComplete="text"
@@ -140,60 +100,6 @@ export function UserAuthForm({ className, ...props }) {
               autoCorrect="off"
               disabled={isLoading}
             />
-            <div className="flex flex-row justify-between gap-2 items-center w-full">
-              <div
-                className={`flex w-full items-center px-3 py-2 rounded-lg cursor-pointer ${
-                  selectedRole === "creator"
-                    ? "dark:bg-slate-200 dark:text-slate-950 border border-slate-800"
-                    : " dark:bg-slate-950 dark:text-slate-200"
-                }`}
-                onClick={() => handleRoleChange("creator")}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  className="mr-2 w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-                Creator
-              </div>
-              <div
-                className={`flex w-full items-center px-3 py-2 rounded-lg cursor-pointer ${
-                  selectedRole === "user"
-                    ? "dark:bg-slate-200 dark:text-slate-950 border border-slate-800"
-                    : " dark:bg-slate-950 dark:text-slate-200"
-                }`}
-                onClick={() => handleRoleChange("user")}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  className="mr-2 w-4 h-4"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-                Audience
-              </div>
-            </div>
           </div>
           <Button disabled={isLoading}>
             {isLoading && (
@@ -218,7 +124,7 @@ export function UserAuthForm({ className, ...props }) {
                 ></path>
               </svg>
             )}
-            Sign In with Email
+            Sign Up with Email
           </Button>
         </div>
       </form>
