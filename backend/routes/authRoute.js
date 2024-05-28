@@ -65,8 +65,8 @@ router.post("/register", async (req, res) => {
 });
 
 // Verify email token
-router.get("/verify-email", async (req, res) => {
-  const { token } = req.query;
+router.get("/verify-email/:token", async (req, res) => {
+  const token = req.params.token;
 
   try {
     const user = await User.findOne({
