@@ -184,38 +184,6 @@ export default function DashboardLayout({ children }) {
               {new Date().toLocaleString()}
             </span>
           </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                size="icon"
-                className="overflow-hidden rounded-full"
-              >
-                <Image
-                  src="/miragelancer.png"
-                  width={36}
-                  height={36}
-                  alt="Avatar"
-                  className="overflow-hidden rounded-full"
-                />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Link href="/dashboard/payments" className="w-full h-full">
-                  Payments
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="bg-red-50 text-red-500 cursor-pointer">
-                Logout
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </header>
         <main className="flex flex-col px-4 py-2 w-full">{children}</main>
       </div>
