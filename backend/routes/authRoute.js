@@ -65,13 +65,12 @@ router.post("/register", async (req, res) => {
 });
 
 // Verify email token
-router.get("/verify-email", async (req, res) => {
-  const { token } = req.query;
+router.get("/verify-email/:token", async (req, res) => {
+  const token = req.params.token;
 
   try {
     const user = await User.findOne({
-      verificationToken: token,
-      emailVerificationExpire: { $gt: Date.now() },
+      verificationToken: token
     });
 
     if (!user) {
@@ -79,13 +78,14 @@ router.get("/verify-email", async (req, res) => {
     }
 
     user.emailVerified = true;
-    user.verificationToken = undefined; // Clear the verification token
-    user.emailVerificationExpire = undefined; // Clear the token expiration
+    user.verificationToken = undefined;
+    user.emailVerificationExpire = undefined;
 
     await user.save();
 
     res.status(200).json({ message: "Email verified successfully" });
   } catch (error) {
+    console.error("Error verifying email:", error);
     res.status(500).json({ message: "Error verifying email", error });
   }
 });
