@@ -70,8 +70,7 @@ router.get("/verify-email/:token", async (req, res) => {
 
   try {
     const user = await User.findOne({
-      verificationToken: token,
-      emailVerificationExpire: { $gt: Date.now() },
+      verificationToken: token
     });
 
     if (!user) {
