@@ -79,13 +79,14 @@ router.get("/verify-email/:token", async (req, res) => {
     }
 
     user.emailVerified = true;
-    user.verificationToken = undefined; // Clear the verification token
-    user.emailVerificationExpire = undefined; // Clear the token expiration
+    user.verificationToken = undefined;
+    user.emailVerificationExpire = undefined;
 
     await user.save();
 
     res.status(200).json({ message: "Email verified successfully" });
   } catch (error) {
+    console.error("Error verifying email:", error);
     res.status(500).json({ message: "Error verifying email", error });
   }
 });
