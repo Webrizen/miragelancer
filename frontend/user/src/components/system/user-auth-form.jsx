@@ -32,7 +32,7 @@ export function UserAuthForm({ className, ...props }) {
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_BASEURL}/auth/register`,
           {
-            fullName,
+            displayName: fullName,
             email,
             role: selectedRole,
             password,
