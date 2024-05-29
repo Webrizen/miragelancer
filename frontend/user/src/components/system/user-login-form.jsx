@@ -7,13 +7,13 @@ import { Label } from "@/components/ui/label";
 import { FcGoogle } from "react-icons/fc";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import { useAuth } from "@/context/AuthContext";
+import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 
 export function UserLoginForm({ className, ...props }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
-  const { login } = useAuth();
+  const { login } = useUserContext();
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -30,7 +30,7 @@ export function UserLoginForm({ className, ...props }) {
           password,
         }
       );
-      login(response.data.token);
+      login(response.data);
       toast.success(`Login successful - we're redirecting you to dashboard.`, {
         duration: 4000,
         position: "bottom-center",
