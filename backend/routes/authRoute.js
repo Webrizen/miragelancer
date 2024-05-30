@@ -117,7 +117,7 @@ router.post("/login", async (req, res) => {
       expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRES,
     });
 
-    res.status(200).json({ token, userId: user._id });
+    res.status(200).json({ token, userId: user._id, role: user.role });
   } catch (error) {
     res.status(500).json({ message: "Error logging in", error });
   }
