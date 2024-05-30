@@ -42,7 +42,7 @@ export default function Navbar() {
     <>
       <Toaster position="bottom-center" />
       <header
-        className="bg-gradient-to-r from-red-500 to-orange-500 sticky top-0 w-full bg-[rgba(225,225,225,0.1)] backdrop-blur-2xl border-b border-b-slate-300"
+        className="bg-gradient-to-r from-slate-950 to-slate-700 sticky top-0 w-full bg-[rgba(225,225,225,0.1)] backdrop-blur-2xl border-b border-b-slate-300"
         style={{ zIndex: "9999999" }}
       >
         <div className="container mx-auto flex flex-row flex-wrap p-2 md:justify-normal justify-between items-center">
