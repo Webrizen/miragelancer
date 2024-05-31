@@ -154,7 +154,7 @@ export default function DashboardLayout({ children }) {
                 <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
                 <span className="sr-only">Miragelancer</span>
               </Link>
-              {user.role === "freelancer" ? (
+              {user?.role === "freelancer" ? (
                 <>
                   {navItems.map(({ href, icon, tooltip, className = "" }) => (
                     <Tooltip key={tooltip}>
@@ -171,7 +171,7 @@ export default function DashboardLayout({ children }) {
                     </Tooltip>
                   ))}
                 </>
-              ) : user.role === "client" ? (
+              ) : user?.role === "client" ? (
                 <>
                   {navItemsClients.map(
                     ({ href, icon, tooltip, className = "" }) => (
@@ -228,7 +228,7 @@ export default function DashboardLayout({ children }) {
                     <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
                     <span className="sr-only">Miragelancer</span>
                   </Link>
-                  {user.role === "freelancer" ? (
+                  {user?.role === "freelancer" ? (
                     <>
                       {navItems.map(({ href, icon, label, className = "" }) => (
                         <Link
@@ -241,7 +241,7 @@ export default function DashboardLayout({ children }) {
                         </Link>
                       ))}
                     </>
-                  ) : user.role === "client" ? (
+                  ) : user?.role === "client" ? (
                     <>
                       {navItemsClients.map(
                         ({ href, icon, label, className = "" }) => (
