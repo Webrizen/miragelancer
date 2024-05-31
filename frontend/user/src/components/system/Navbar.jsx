@@ -92,7 +92,7 @@ export default function Navbar() {
             </Link>
           </nav>
           <div className="flex justify-end items-center gap-1">
-            {user.role === "freelancer" ? (
+            {user?.role === "freelancer" ? (
               <>
                 <DropdownMenu>
                   <DropdownMenuTrigger>
@@ -271,7 +271,7 @@ export default function Navbar() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </>
-            ) : user.role === "client" ? (
+            ) : user?.role === "client" ? (
               <>
                 <DropdownMenu>
                   <DropdownMenuTrigger>
