@@ -1,30 +1,39 @@
 {
-  "name": "miragelancer-backend",
+  "name": "workwise",
   "version": "1.0.0",
-  "description": "Miragelancer - Next Gen AI powered Freelancing Platform For New Age.",
-  "main": "index.js",
+  "description": "----------\r # WorkWise\r ----------",
+  "main": "./src/app.js",
   "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "nodemon",
+    "dev-init": "git pull && npm install && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "freelancing"
-  ],
-  "author": "Arshahdul Ahmed",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sankhasubhraroy/WorkWise.git"
+  },
+  "author": "memukherjee & sankhasubhraroy",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sankhasubhraroy/WorkWise/issues"
+  },
+  "homepage": "https://github.com/sankhasubhraroy/WorkWise#readme",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.2",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "google-auth-library": "^9.9.0",
-    "http": "^0.0.1-security",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.3",
-    "nodemailer": "^6.9.13",
-    "nodemon": "^3.1.0",
-    "passport": "^0.7.0",
-    "passport-google-oauth20": "^2.0.0",
-    "socket.io": "^4.7.5"
+    "crypto": "^1.0.1",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "googleapis": "^118.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.6.0",
+    "mongoose": "^7.2.4",
+    "nodemailer": "^6.9.3",
+    "razorpay": "^2.9.1",
+    "socket.io": "^4.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
