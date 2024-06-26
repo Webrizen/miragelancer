@@ -99,7 +99,7 @@ export default function Navbar() {
                     <Avatar className="w-10 h-10 rounded-full cursor-pointer backdrop-blur-3xl hover:bg-[rgba(0,0,0,0.04)] flex justify-center items-center">
                       <AvatarImage
                         src={
-                          userData?.photoURL || `https://www.aapda.in/male.png`
+                          userData?.profilePicture || `https://www.aapda.in/male.png`
                         }
                         alt="@N/A"
                       />
@@ -111,7 +111,7 @@ export default function Navbar() {
                       <Avatar className="w-10 h-10 rounded-full backdrop-blur-3xl hover:bg-[rgba(0,0,0,0.04)] flex justify-center items-center">
                         <AvatarImage
                           src={
-                            userData?.photoURL ||
+                            userData?.profilePicture ||
                             `https://www.aapda.in/male.png`
                           }
                           alt="@N/A"
@@ -120,7 +120,7 @@ export default function Navbar() {
                       </Avatar>
                       <div className="flex flex-col items-center text-left">
                         <span className="text-sm text-left line-clamp-1">
-                          {userData?.displayName || "No Full Name"}
+                          {userData?.name || "No Full Name"}
                         </span>
                         <span className="text-xs text-slate-600 font-normal w-full">
                           {userData?.role || "N/A"}

@@ -267,7 +267,7 @@ export default function DashboardLayout({ children }) {
               <span>
                 {getGreeting()},{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600 font-bold">
-                  {userData?.displayName || "N/A"}
+                  {userData?.name || "N/A"}
                 </span>
               </span>
               <span>•</span>
