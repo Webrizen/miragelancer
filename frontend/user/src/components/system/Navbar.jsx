@@ -51,7 +51,7 @@ export default function Navbar() {
             className="flex title-font font-medium items-center text-slate-200 mr-4 border-r-none md:border-r border-slate-300 pr-4 md:mb-0"
           >
             <img src="/logo.png" alt="Spinflame Logo" className="w-auto h-8" />
-            <span className="ml-3 text-xl md:block hidden">Miragelancer</span>
+            <span className="ml-3 text-xl">Miragelancer</span>
           </Link>
           <nav
             className={`lg:flex lg:flex-row flex-col flex-grow md:relative absolute md:w-auto w-full left-0 right-0 md:top-auto top-16 z-50 text-sm items-center text-white ${
@@ -457,7 +457,7 @@ export default function Navbar() {
                 </Button>
               </>
             )}
-            <Button
+            <button
               className="inline-flex w-10 h-10 justify-center items-center text-slate-50 hover:bg-[rgba(225,225,225,0.1)] rounded lg:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -494,7 +494,7 @@ export default function Navbar() {
                   </svg>
                 </>
               )}
-            </Button>
+            </button>
           </div>
         </div>
       </header>

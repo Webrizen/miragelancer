@@ -18,14 +18,13 @@ function Verify() {
   const verifyEmail = (token) => {
     setIsLoading(true);
     axios
-      .get(`${process.env.NEXT_PUBLIC_BASEURL}/auth/verify-email/${token}`)
+      .get(`${process.env.NEXT_PUBLIC_BASEURL}/auth/verify-email?${token}`)
       .then((response) => {
         setVerificationStatus("success");
         toast.success(`Signup successful - ${response?.data?.message}`, {
           duration: 4000,
           position: "bottom-center",
         });
-        router.push("/auth");
       })
       .catch((error) => {
         setVerificationStatus("error");

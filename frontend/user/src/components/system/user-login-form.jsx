@@ -9,6 +9,8 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
+import { auth, googleProvider } from "@/firebase/config";
+import { signInWithPopup } from "firebase/auth";
 
 export function UserLoginForm({ className, ...props }) {
   const router = useRouter();
@@ -43,6 +45,35 @@ export function UserLoginForm({ className, ...props }) {
       toast.error(`Login error - ${error.response.data.message}`, {
         duration: 4000,
         position: 'bottom-center',
+      });
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setIsLoading(true);
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      // Send login request to your backend
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASEURL}/auth/login`,
+        {
+          email: result.user.email,
+          password: result.user.uid,
+        }
+      );
+      login(response.data);
+      toast.success("Google Sign-In successful", {
+        duration: 4000,
+        position: "bottom-center",
+      });      
+      setIsLoading(false);
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Google Sign-In error:", error);
+      toast.error(`Google Sign-In unsuccessful - ${error.message}`, {
+        duration: 4000,
+        position: "bottom-center",
       });
       setIsLoading(false);
     }
@@ -120,10 +151,30 @@ export function UserLoginForm({ className, ...props }) {
         variant="outline"
         type="button"
         disabled={isLoading}
-        title="Not Supported Currently"
-        className="cursor-not-allowed"
+        onClick={handleGoogleSignIn}
       >
-        <FcGoogle className="mr-2 h-4 w-4" /> Google
+        <FcGoogle className="mr-2 h-4 w-4" /> {isLoading ? (
+              <svg
+                className="animate-spin h-4 w-4 mr-2 text-red-500"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            ) : "Google"}
       </Button>
     </div>
   );
