@@ -84,6 +84,7 @@ export function UserAuthForm({ className, ...props }) {
         position: "bottom-center",
       });
       setIsLoading(false);
+      router.push("/auth/verify-email");
     } catch (error) {
       console.error("Google Sign-In error:", error);
       toast.error(`Google Sign-In unsuccessful - ${error.message}`, {
