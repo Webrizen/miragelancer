@@ -13,7 +13,7 @@ const auth = require("../middleware/auth");
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.put("/profile", auth, updateUserProfile);
-router.get("/verify-email", verifyEmail);
+router.get("/verify-email/:token", verifyEmail);
 router.get("/:id", getUserById);
 
 module.exports = router;

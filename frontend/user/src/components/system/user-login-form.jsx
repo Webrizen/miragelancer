@@ -54,6 +54,10 @@ export function UserLoginForm({ className, ...props }) {
     setIsLoading(true);
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      toast.success("Google Sign-In successful - Relax and stay calm, this may take a moment!", {
+        duration: 4000,
+        position: "bottom-center",
+      });
       // Send login request to your backend
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASEURL}/auth/login`,

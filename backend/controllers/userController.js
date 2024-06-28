@@ -129,7 +129,7 @@ const loginUser = async (req, res) => {
 
 // Verify email
 const verifyEmail = async (req, res) => {
-  const { token } = req.query;
+  const token = req.params.token;
 
   try {
     // Find user by verification token
@@ -140,7 +140,7 @@ const verifyEmail = async (req, res) => {
 
     // Verify user
     user.isVerified = true;
-    user.verificationToken = undefined;
+    user.verificationToken = "";
 
     await user.save();
 
