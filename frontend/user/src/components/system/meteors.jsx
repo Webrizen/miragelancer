@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { cn } from "@/firebase/lib/utils";
+import { cn } from "@/lib/utils";
 
 export const Meteors = ({
   number,
