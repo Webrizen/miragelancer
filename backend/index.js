@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const dbConfig = require("./config/db");
+const jobRoutes = require('./routes/jobRoutes');
+const proposalRoutes = require('./routes/proposalRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,6 +31,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", userRoutes);
+app.use('/api/jobs', jobRoutes);
+app.use('/api/proposals', proposalRoutes);
 
 // Start the server
 app.listen(PORT, () => {
