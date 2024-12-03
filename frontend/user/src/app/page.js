@@ -29,7 +29,7 @@ export default function Home() {
                 }}
               />
             </div>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <div className="flex flex-wrap items-center w-full text-center gap-x-4 gap-y-2">
               <p className="text-sm leading-6 text-gray-900">
                 <strong className="font-semibold">Version 1.2</strong>
                 <svg
